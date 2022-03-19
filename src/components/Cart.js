@@ -14,6 +14,8 @@ const Cart = () => {
     setTotal(cart.reduce((acc, item) => acc + item.unit_amount * item.quantity, 0))
   }
 
+  const origin = (typeof window === 'undefined') ? '' : window.location.origin;
+
   const handleBuy = async (e) => {
     e.preventDefault()
     setLoading(true)
@@ -22,8 +24,8 @@ const Cart = () => {
     const { error } = await stripe.redirectToCheckout({
       mode: "payment",
       lineItems: cart.map(({id, quantity}) => ({price: id, quantity})),
-      successUrl: process.env.SUCCESS_REDIRECT,
-      cancelUrl: process.env.CANCEL_REDIRECT,
+      successUrl: `${origin}/success`,
+      cancelUrl: `${origin}/cancel`
     })
 
     if (error) {
