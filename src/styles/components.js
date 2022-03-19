@@ -333,6 +333,7 @@ export const StyledProductDetail = styled.div`
   justify-content: center;
   align-items: center;
   text-align: justify;
+  min-height: 40rem;
   height: 100%;
   img {
     width: 100%;
@@ -370,10 +371,6 @@ export const StyledProductDetail = styled.div`
     }
   }
   ${above.medium`
-    flex-direction: column;
-
-  `}
-  ${above.large`
     flex-direction: row;
     padding: 2rem 10rem;
     justify-content: space-between;
